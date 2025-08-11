@@ -429,11 +429,11 @@
       if (themeToggle) {
         // Set correct icon on load
         const isLightNow = document.documentElement.classList.contains('light');
-        themeToggle.innerHTML = isLightNow ? '<i class="fa-regular fa-sun"></i>' : '<i class="fa-regular fa-moon"></i>';
+        themeToggle.innerHTML = isLightNow ? '<i class="fa-regular fa-sun"></i>' Theme '<i class="fa-regular fa-moon"></i>';
         themeToggle.addEventListener('click', () => {
           const isLight = document.documentElement.classList.toggle('light');
           try { localStorage.setItem('theme', isLight ? 'light' : 'dark'); } catch (_) {}
-          themeToggle.innerHTML = isLight ? '<i class="fa-regular fa-sun"></i>' : '<i class="fa-regular fa-moon"></i>';
+          themeToggle.innerHTML = isLight ? '<i class="fa-regular fa-sun"></i>' Theme '<i class="fa-regular fa-moon"></i>';
         });
       }
 
@@ -518,6 +518,7 @@
   </script>
 </body>
 </html>
+
 
 
 
