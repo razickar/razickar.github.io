@@ -1,0 +1,524 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Razickar Portfolio — Abdul Rasic S</title>
+  <meta name="description" content="Portfolio of Abdul Rasic S, Full Stack Developer. Java, MySQL, HTML, CSS, JavaScript. Zoho Schools Trainee. Projects, skills, profiles, and contact." />
+
+  <meta property="og:title" content="Abdul Rasic S — Full Stack Developer" />
+  <meta property="og:description" content="Java, MySQL, HTML, CSS, JavaScript. Projects, experience, and contact." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://your-domain-or-github-pages" />
+  <meta property="og:image" content="assets/profile.jpg" />
+
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%232563eb'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-family='Inter,Arial' font-size='28' fill='white'%3ERA%3C/text%3E%3C/svg%3E" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    :root {
+      --bg: #0b1020;
+      --bg-2: #0f172a;
+      --surface: #111827;
+      --surface-2: #0b1324;
+      --text: #e6f1ff;
+      --muted: #8aa0b8;
+      --primary: #22d3ee;
+      --accent: #a78bfa;
+      --accent-2: #34d399;
+      --ring: rgba(34, 211, 238, 0.35);
+      --card-border: rgba(255,255,255,0.08);
+      --shadow: 0 10px 30px rgba(0,0,0,0.35);
+    }
+    :root.light {
+      /* Professional light with slightly darker contrast */
+      --bg: #f5f7fb;
+      --bg-2: #eef2f8;
+      --surface: #ffffff;
+      --surface-2: #f3f6fb;
+      --text: #0a1220;
+      --muted: #4a5a70;
+      --primary: #2563eb;    /* professional blue */
+      --accent: #60a5fa;     /* blue-400 */
+      --accent-2: #14b8a6;   /* teal */
+      --ring: rgba(37,99,235,0.25);
+      --card-border: rgba(2,6,23,0.09);
+      --shadow: 0 10px 22px rgba(2,6,23,0.06);
+    }
+    * { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Inter', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      overflow-x: hidden;
+      position: relative;
+      min-height: 100%;
+    }
+    body::before, body::after {
+      content: ""; position: fixed; inset: -20% -10% auto -10%; height: 70vh; z-index: -1;
+      filter: blur(60px) saturate(1.2); opacity: 0.55; pointer-events: none;
+      background: radial-gradient(650px 350px at 85% 20%, color-mix(in oklab, var(--primary) 45%, transparent), transparent),
+                  radial-gradient(600px 320px at 10% 10%, color-mix(in oklab, var(--accent) 40%, transparent), transparent),
+                  radial-gradient(500px 300px at 50% 90%, color-mix(in oklab, var(--accent-2) 35%, transparent), transparent);
+      animation: orbFloat 18s ease-in-out infinite alternate;
+    }
+    body::after { inset: auto -10% -20% -10%; height: 60vh; opacity: 0.45; filter: blur(75px) saturate(1.15); animation-duration: 24s; animation-delay: .5s; }
+    html.light body::before, html.light body::after { opacity: 0.14; filter: blur(80px) saturate(0.9); }
+    @keyframes orbFloat { 0%{ transform: translate3d(0,0,0) scale(1);} 100%{ transform: translate3d(0,-2.5rem,0) scale(1.03);} }
+    .container { width: min(1120px, 92vw); margin: 0 auto; }
+    .section { padding: 72px 0; }
+    h1,h2,h3 { margin: 0 0 12px; line-height: 1.25; }
+    h2 { font-size: clamp(22px, 2.2vw, 30px); }
+    h3 { font-size: clamp(18px, 1.8vw, 22px); }
+    p { margin: 0 0 12px; }
+    .muted { color: var(--muted); }
+    .small { font-size: 12px; }
+    .site-header { position: sticky; top: 0; z-index: 50; backdrop-filter: saturate(1.1) blur(10px); background: color-mix(in oklab, var(--bg) 80%, transparent); border-bottom: 1px solid var(--card-border); transition: background .3s ease, border-color .3s ease; }
+    .site-header.scrolled { background: color-mix(in oklab, var(--bg) 92%, transparent); }
+    .nav { display: flex; align-items: center; justify-content: space-between; padding: 12px 0; }
+    .brand { font-weight: 900; color: var(--text); text-decoration: none; letter-spacing: 1px; border: 2px solid var(--card-border); padding: 6px 12px; border-radius: 12px; background: linear-gradient(135deg, color-mix(in oklab, var(--surface) 90%, transparent), transparent); box-shadow: inset 0 0 0 1px color-mix(in oklab, var(--text) 4%, transparent); transition: transform .25s ease; }
+    .brand:hover { transform: translateY(-1px); }
+    .nav-links { display: flex; gap: 18px; }
+    .nav-links a { color: var(--muted); text-decoration: none; font-weight: 600; position: relative; }
+    .nav-links a::after { content: ""; position: absolute; left: 0; right: 0; bottom: -8px; height: 2px; transform: scaleX(0); transform-origin: left; background: linear-gradient(90deg, var(--primary), var(--accent)); transition: transform .35s ease; }
+    .nav-links a:hover { color: var(--text); }
+    .nav-links a:hover::after, .nav-links a.active::after { transform: scaleX(1); }
+    .nav-actions { display: flex; gap: 8px; align-items: center; }
+    .icon-btn { background: color-mix(in oklab, var(--surface) 80%, transparent); border: 1px solid var(--card-border); color: var(--text); border-radius: 12px; padding: 8px 10px; cursor: pointer; transition: border-color .2s ease, transform .2s ease; }
+    .icon-btn:hover { border-color: var(--primary); transform: translateY(-1px); }
+    #menuToggle { display: none; }
+    #scrollProgress { position: fixed; top: 0; left: 0; height: 3px; width: 0%; z-index: 60; background: linear-gradient(90deg, var(--primary), var(--accent)); box-shadow: 0 0 12px color-mix(in oklab, var(--primary) 45%, transparent); transition: width .15s ease-out; }
+    .hero { display: grid; grid-template-columns: 1.4fr 1fr; gap: 32px; padding: 72px 0 56px; align-items: center; }
+    .headline { font-size: clamp(34px, 5vw, 56px); font-weight: 900; letter-spacing: .6px; background: linear-gradient(92deg, var(--text), color-mix(in oklab, var(--primary) 60%, var(--text))); -webkit-background-clip: text; background-clip: text; color: transparent; }
+    .subhead { font-size: 18px; color: var(--primary); font-weight: 700; letter-spacing: .4px; }
+    .location { color: var(--muted); }
+    .cta { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 14px; }
+    .btn { position: relative; isolation: isolate; background: linear-gradient(135deg, color-mix(in oklab, var(--surface) 92%, transparent), transparent); color: var(--text); border: 1px solid var(--card-border); padding: 10px 14px; border-radius: 14px; text-decoration: none; display: inline-flex; align-items: center; gap: 8px; font-weight: 700; letter-spacing: .2px; transition: transform .2s ease, border-color .2s ease; }
+    .btn::before { content: ""; position: absolute; inset: 0; border-radius: inherit; z-index: -1; background: linear-gradient(135deg, color-mix(in oklab, var(--primary) 18%, transparent), color-mix(in oklab, var(--accent) 14%, transparent)); opacity: 0; transition: opacity .25s ease; }
+    .btn:hover { transform: translateY(-1px); border-color: var(--primary); }
+    .btn:hover::before { opacity: 1; }
+    .btn.primary { background: linear-gradient(135deg, var(--primary), var(--accent)); color: #ffffff; border: none; box-shadow: 0 10px 24px color-mix(in oklab, var(--primary) 16%, transparent); }
+    .btn.outline { background: transparent; border: 1px dashed var(--card-border); }
+    .btn-group { display: inline-flex; gap: 6px; }
+    .hero-photo { display: grid; justify-items: center; gap: 10px; }
+    .photo-frame { width: 260px; height: 260px; border-radius: 50%; overflow: hidden; border: 2px solid color-mix(in oklab, var(--primary) 35%, var(--card-border)); background: linear-gradient(180deg, color-mix(in oklab, var(--primary) 10%, transparent), color-mix(in oklab, var(--accent) 8%, transparent)); box-shadow: 0 14px 36px color-mix(in oklab, var(--accent) 10%, transparent); transform: translateZ(0); transition: transform .3s ease, box-shadow .3s ease; }
+    .photo-frame:hover { transform: translateY(-3px); box-shadow: 0 18px 42px color-mix(in oklab, var(--primary) 18%, transparent); }
+    .photo-frame img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .photo-note { color: var(--muted); font-size: 12px; }
+    .card { background: color-mix(in oklab, var(--surface) 92%, transparent); border: 1px solid var(--card-border); border-radius: 16px; padding: 18px; box-shadow: var(--shadow); transition: transform .25s ease, border-color .25s ease, box-shadow .25s ease; }
+    .card:hover { transform: translateY(-4px); border-color: color-mix(in oklab, var(--primary) 45%, var(--card-border)); box-shadow: 0 14px 36px rgba(0,0,0,0.35); }
+    .grid.two { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+    .tags { display: flex; flex-wrap: wrap; gap: 10px; padding: 0; list-style: none; margin: 10px 0 0; }
+    .tags li { padding: 8px 12px; border: 1px solid var(--card-border); border-radius: 999px; background: var(--surface-2); color: var(--text); font-weight: 700; font-size: 14px; }
+    .bullets { margin: 10px 0 0 18px; }
+    .bullets li { margin: 6px 0; }
+    .tech { color: var(--muted); font-style: italic; }
+    .timeline { position: relative; margin: 8px 0 0 0; }
+    .timeline::before { content: ""; position: absolute; left: 9px; top: 0; bottom: 0; width: 2px; background: var(--card-border); }
+    .timeline-item { position: relative; margin-left: 24px; margin-bottom: 16px; }
+    .timeline-dot { position: absolute; left: -2px; top: 10px; width: 12px; height: 12px; border-radius: 999px; background: linear-gradient(135deg, var(--primary), var(--accent)); box-shadow: 0 0 0 4px var(--ring); }
+    .timeline-content { margin-left: 12px; }
+    .profile { display: flex; align-items: center; justify-content: space-between; text-decoration: none; color: var(--text); }
+    .profile:hover { border-color: var(--primary); }
+    .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+    .contact-form .form-row { display: grid; gap: 6px; margin-bottom: 10px; }
+    input, textarea { background: var(--surface-2); border: 1px solid var(--card-border); color: var(--text); border-radius: 10px; padding: 10px 12px; transition: outline-color .2s ease, box-shadow .2s ease; }
+    input:focus, textarea:focus { outline: 2px solid var(--ring); box-shadow: 0 0 0 4px color-mix(in oklab, var(--primary) 12%, transparent); }
+    [data-animate] { opacity: 0; transform: translateY(18px) scale(.98); filter: saturate(.9); }
+    [data-animate].reveal { opacity: 1; transform: none; filter: none; transition: opacity .7s ease, transform .7s cubic-bezier(.22,.61,.36,1), filter .7s ease; }
+    .site-footer { padding: 36px 0; border-top: 1px solid var(--card-border); margin-top: 32px; }
+    .footer-inner { display: flex; align-items: center; justify-content: space-between; }
+    .footer-links { display: flex; gap: 14px; }
+    .footer-links a { color: var(--muted); text-decoration: none; }
+    .footer-links a:hover { color: var(--text); }
+    .phone-row { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+    @media (max-width: 900px) {
+      .hero { grid-template-columns: 1fr; text-align: center; }
+      .cta { justify-content: center; }
+      .grid.two, .contact-grid { grid-template-columns: 1fr; }
+      #menuToggle { display: inline-flex; }
+      .nav-links { position: absolute; top: 56px; right: 12px; left: 12px; padding: 10px; border: 1px solid var(--card-border); border-radius: 12px; background: var(--surface); display: none; flex-direction: column; gap: 10px; }
+      .nav-links.open { display: flex; }
+    }
+    @media (prefers-reduced-motion: reduce) { * { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; scroll-behavior: auto !important; } }
+  </style>
+  <script defer src="https://kit.fontawesome.com/a2d9c9d6f4.js" crossorigin="anonymous"></script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container nav">
+      <a class="brand" href="#home" title="Razickar">RA</a>
+      <nav class="nav-links" id="navLinks">
+        <a href="#about">About</a>
+        <a href="#skills">Skills</a>
+        <a href="#experience">Experience</a>
+        <a href="#education">Education</a>
+        <a href="#projects">Projects</a>
+        <a href="#profiles">Profiles</a>
+        <a href="#contact">Contact</a>
+      </nav>
+      <div class="nav-actions">
+        <button class="icon-btn" id="themeToggle" aria-label="Toggle theme"><i class="fa-regular fa-moon"></i></button>
+        <button class="icon-btn" id="menuToggle" aria-label="Toggle menu"><i class="fa-solid fa-bars"></i></button>
+      </div>
+    </div>
+  </header>
+  <div id="scrollProgress"></div>
+
+  <main>
+    <section id="home" class="hero container">
+      <div class="hero-text">
+        <h1 class="headline">ABDUL RASIC S</h1>
+        <p class="subhead">Full Stack Developer</p>
+        <p class="location"><i class="fa-solid fa-location-dot"></i> Sankarankovil, Tenkasi</p>
+        <div class="cta">
+          <a class="btn primary" href="mailto:iamabdulrazick@gmail.com"><i class="fa-solid fa-envelope"></i> Email</a>
+          <div class="btn-group">
+            <a class="btn" href="tel:+918122609074"><i class="fa-solid fa-phone"></i> Call</a>
+            <button class="btn" id="copyPhoneHero" data-phone="+918122609074" type="button" title="Copy number"><i class="fa-regular fa-copy"></i></button>
+          </div>
+          <a class="btn" href="https://www.linkedin.com/in/abdulrasics/" target="_blank" rel="noopener">LinkedIn</a>
+          <a class="btn" href="https://github.com/razickar" target="_blank" rel="noopener">GitHub</a>
+          <a class="btn outline" href="assets/Abdul_Rasic_Resume.pdf" target="_blank" rel="noopener"><i class="fa-solid fa-file"></i> Resume</a>
+        </div>
+      </div>
+      <div class="hero-photo">
+        <div class="photo-frame">
+          <img src="assets/profile.jpg" alt="Photo of Abdul Rasic" />
+        </div>
+        <p class="photo-note">Add your photo as assets/profile.jpg</p>
+      </div>
+    </section>
+
+    <section id="about" class="section container">
+      <h2>Career Objective</h2>
+      <p>Seeking a challenging work environment to utilize my technical and leadership skills effectively and efficiently to achieve the goals of the organization.</p>
+    </section>
+
+    <section id="skills" class="section container">
+      <h2>Skills</h2>
+      <div class="grid two">
+        <div class="card">
+          <h3><i class="fa-solid fa-code"></i> Technical</h3>
+          <ul class="tags">
+            <li>Java</li>
+            <li>MySQL</li>
+            <li>HTML</li>
+            <li>CSS</li>
+            <li>JavaScript</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3><i class="fa-solid fa-user-check"></i> Soft Skills</h3>
+          <ul class="tags">
+            <li>Deep Learner</li>
+            <li>Prompting</li>
+            <li>Adaptability</li>
+            <li>Strong Leadership</li>
+            <li>Good Communication</li>
+            <li>Problem Solving</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="grid two">
+        <div class="card">
+          <h3><i class="fa-solid fa-language"></i> Languages</h3>
+          <ul class="tags">
+            <li>English</li>
+            <li>Tamil</li>
+            <li>Arabic</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3><i class="fa-solid fa-heart"></i> Areas of Interest</h3>
+          <ul class="tags">
+            <li>Application Development</li>
+            <li>Programming</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="experience" class="section container">
+      <h2>Experience</h2>
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-content card">
+            <h3>Incubation Trainee</h3>
+            <p class="muted">Zoho Schools for Graduate Studies • Jan 2025 – Jun 2025</p>
+            <p>Hands-on training in software development and engineering practices.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="education" class="section container">
+      <h2>Education</h2>
+      <div class="grid two">
+        <div class="card">
+          <h3>B.E — Electronics and Communication Engineering</h3>
+          <p class="muted">Nellai College Of Engineering, Tirunelveli • 2019 – 2023</p>
+          <p><strong>CGPA:</strong> 7.0</p>
+        </div>
+        <div class="card">
+          <h3>HSC</h3>
+          <p class="muted">Sri Mahalakshmi Matriculation Higher Secondary School, Sankarankovil • 2018 – 2019</p>
+          <p><strong>Percentage:</strong> 59%</p>
+        </div>
+        <div class="card">
+          <h3>SSLC</h3>
+          <p class="muted">Imam Gazzali Oriental Matriculation School, Sankarankovil • 2016 – 2017</p>
+          <p><strong>Percentage:</strong> 79%</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="projects" class="section container">
+      <h2>Projects</h2>
+
+      <div class="card">
+        <h3>Knowledge Hub — Library Management System</h3>
+        <p class="muted">Console-based Java application (MVC)</p>
+        <ul class="bullets">
+          <li>Console-based book management with registration, search, and book handling.</li>
+          <li>Modular MVC architecture with OOP principles.</li>
+        </ul>
+        <p class="tech">Tech: Core Java, OOP, MVC pattern</p>
+      </div>
+
+      <div class="card">
+        <h3>Book-now-seat — Theatre Ticket Booking System</h3>
+        <p class="muted">Console-based Java application (MVC)</p>
+        <ul class="bullets">
+          <li>Admin/user login, ticket booking, booking history, dynamic pricing.</li>
+          <li>Clear separation of concerns with modular components.</li>
+        </ul>
+        <p class="tech">Tech: Core Java, OOP, MVC pattern</p>
+      </div>
+
+      <div class="card">
+        <h3>Child Safety and Prevention Of Accident in School Zones</h3>
+        <ul class="bullets">
+          <li>Initiative to limit vehicle speed in school zones to reduce accidents.</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h3>Smart Theft Identification using Vehicle Number Plate Recognition</h3>
+        <ul class="bullets">
+          <li>Recognize vehicle number and alert if flagged as a theft vehicle.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="profiles" class="section container">
+      <h2>Coding Profiles</h2>
+      <div class="grid two">
+        <a class="profile card" href="https://leetcode.com/u/Abdul_Rasic/" target="_blank" rel="noopener">
+          <div><i class="fa-solid fa-code"></i> LeetCode</div>
+          <span class="muted">leetcode.com/u/Abdul_Rasic/</span>
+        </a>
+        <a class="profile card" href="https://www.hackerrank.com/profile/iamabdulrazick" target="_blank" rel="noopener">
+          <div><i class="fa-brands fa-hackerrank"></i> HackerRank</div>
+          <span class="muted">hackerrank.com/profile/iamabdulrazick</span>
+        </a>
+      </div>
+    </section>
+
+    <section id="contact" class="section container">
+      <h2>Contact</h2>
+      <div class="contact-grid">
+        <div class="card">
+          <p><i class="fa-solid fa-envelope"></i> <a href="mailto:iamabdulrazick@gmail.com">iamabdulrazick@gmail.com</a></p>
+          <p class="phone-row">
+            <i class="fa-solid fa-phone"></i>
+            <span class="btn-group">
+              <a class="btn" href="tel:+918122609074">+91 81226 09074</a>
+              <button class="btn" id="copyPhoneContact" data-phone="+918122609074" type="button" aria-label="Copy phone"><i class="fa-regular fa-copy"></i></button>
+            </span>
+          </p>
+          <p><i class="fa-brands fa-linkedin"></i> <a href="https://www.linkedin.com/in/abdulrasics/" target="_blank" rel="noopener">linkedin.com/in/abdulrasics</a></p>
+          <p><i class="fa-brands fa-github"></i> <a href="https://github.com/razickar" target="_blank" rel="noopener">github.com/razickar</a></p>
+        </div>
+        <form class="card contact-form" action="mailto:iamabdulrazick@gmail.com" method="post" enctype="text/plain">
+          <div class="form-row">
+            <label>Name</label>
+            <input type="text" name="name" placeholder="Your name" required />
+          </div>
+          <div class="form-row">
+            <label>Email</label>
+            <input type="email" name="email" placeholder="you@example.com" required />
+          </div>
+          <div class="form-row">
+            <label>Message</label>
+            <textarea name="message" rows="4" placeholder="Hello Abdul..." required></textarea>
+          </div>
+          <button class="btn primary" type="submit">Send</button>
+          <p class="muted small">This uses your email client. For a backend form later, I can wire it to a service.</p>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <p>© <span id="year"></span> Abdul Rasic S</p>
+      <div class="footer-links">
+        <a href="https://www.linkedin.com/in/abdulrasics/" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="https://github.com/razickar" target="_blank" rel="noopener">GitHub</a>
+        <a href="mailto:iamabdulrazick@gmail.com">Email</a>
+      </div>
+    </div>
+  </footer>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Abdul Rasic S",
+    "jobTitle": "Full Stack Developer",
+    "email": "mailto:iamabdulrazick@gmail.com",
+    "telephone": "+918122609074",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Sankarankovil",
+      "addressRegion": "Tenkasi"
+    },
+    "url": "https://your-domain-or-github-pages",
+    "sameAs": [
+      "https://www.linkedin.com/in/abdulrasics/",
+      "https://github.com/razickar",
+      "https://leetcode.com/u/Abdul_Rasic/",
+      "https://www.hackerrank.com/profile/iamabdulrazick"
+    ],
+    "knowsAbout": ["Java","MySQL","HTML","CSS","JavaScript"]
+  }
+  </script>
+
+  <script>
+    (function initTheme() {
+      try {
+        const stored = localStorage.getItem('theme');
+        if (stored === 'dark') {
+          document.documentElement.classList.remove('light');
+        } else {
+          document.documentElement.classList.add('light');
+        }
+      } catch (_) {
+        document.documentElement.classList.add('light');
+      }
+    })();
+
+    document.addEventListener('DOMContentLoaded', () => {
+      const themeToggle = document.getElementById('themeToggle');
+      const menuToggle = document.getElementById('menuToggle');
+      const navLinks = document.getElementById('navLinks');
+      const year = document.getElementById('year');
+      const header = document.querySelector('.site-header');
+      const progressEl = document.getElementById('scrollProgress');
+
+      if (year) year.textContent = new Date().getFullYear();
+
+      if (themeToggle) {
+        // Set correct icon on load
+        const isLightNow = document.documentElement.classList.contains('light');
+        themeToggle.innerHTML = isLightNow ? '<i class="fa-regular fa-sun"></i>' : '<i class="fa-regular fa-moon"></i>';
+        themeToggle.addEventListener('click', () => {
+          const isLight = document.documentElement.classList.toggle('light');
+          try { localStorage.setItem('theme', isLight ? 'light' : 'dark'); } catch (_) {}
+          themeToggle.innerHTML = isLight ? '<i class="fa-regular fa-sun"></i>' : '<i class="fa-regular fa-moon"></i>';
+        });
+      }
+
+      if (menuToggle && navLinks) {
+        menuToggle.addEventListener('click', () => navLinks.classList.toggle('open'));
+        navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => navLinks.classList.remove('open')));
+      }
+
+      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', e => {
+          const id = anchor.getAttribute('href');
+          if (id && id.length > 1) {
+            const el = document.querySelector(id);
+            if (el) { e.preventDefault(); el.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
+          }
+        });
+      });
+
+      const revealTargets = [
+        '.hero .hero-text', '.hero .hero-photo',
+        '.section', '.card', '.timeline-item'
+      ].flatMap(sel => Array.from(document.querySelectorAll(sel)));
+      revealTargets.forEach(el => el.setAttribute('data-animate', ''));
+
+      const io = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('reveal');
+            io.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.12 });
+      revealTargets.forEach(el => io.observe(el));
+
+      const sections = Array.from(document.querySelectorAll('main section[id]'));
+      const navAnchors = Array.from(document.querySelectorAll('#navLinks a'));
+
+      const onScroll = () => {
+        const scrollY = window.scrollY || window.pageYOffset;
+        if (scrollY > 12) header.classList.add('scrolled'); else header.classList.remove('scrolled');
+        if (progressEl) {
+          const doc = document.documentElement;
+          const total = (doc.scrollHeight - doc.clientHeight) || 1;
+          const pct = Math.min(100, Math.max(0, (scrollY / total) * 100));
+          progressEl.style.width = pct + '%';
+        }
+        let currentId = sections[0]?.id || '';
+        for (const sec of sections) {
+          const top = sec.getBoundingClientRect().top + scrollY - 120;
+          if (scrollY >= top) currentId = sec.id;
+        }
+        navAnchors.forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#' + currentId));
+      };
+      window.addEventListener('scroll', onScroll, { passive: true });
+      onScroll();
+
+      // Copy phone handlers
+      const copyButtons = [document.getElementById('copyPhoneHero'), document.getElementById('copyPhoneContact')].filter(Boolean);
+      const copyToClipboard = async (text) => {
+        try {
+          await navigator.clipboard.writeText(text);
+          return true;
+        } catch (_) {
+          // Fallback
+          const area = document.createElement('textarea');
+          area.value = text; document.body.appendChild(area); area.select();
+          const ok = document.execCommand('copy'); document.body.removeChild(area);
+          return ok;
+        }
+      };
+      copyButtons.forEach(btn => {
+        btn.addEventListener('click', async () => {
+          const num = btn.getAttribute('data-phone');
+          const ok = await copyToClipboard(num);
+          const original = btn.innerHTML;
+          btn.innerHTML = ok ? '<i class="fa-solid fa-check"></i> Copied' : '<i class="fa-solid fa-xmark"></i> Error';
+          btn.disabled = true;
+          setTimeout(() => { btn.innerHTML = original; btn.disabled = false; }, 1400);
+        });
+      });
+    });
+  </script>
+</body>
+</html>
+
+
+
+
