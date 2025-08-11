@@ -163,8 +163,8 @@
         <a href="#contact">Contact</a>
       </nav>
       <div class="nav-actions">
-        <button class="icon-btn" id="themeToggle" aria-label="Toggle theme"><i class="fa-regular fa-moon">Theme</i></button>
-        <button class="icon-btn" id="menuToggle" aria-label="Toggle menu"><i class="fa-solid fa-bars">Menu</i></button>
+        <button class="icon-btn" id="themeToggle" aria-label="Toggle theme"><i class="fa-regular fa-moon"></i></button>
+        <button class="icon-btn" id="menuToggle" aria-label="Toggle menu"><i class="fa-solid fa-bars"></i></button>
       </div>
     </div>
   </header>
@@ -429,11 +429,12 @@
       if (themeToggle) {
         // Set correct icon on load
         const isLightNow = document.documentElement.classList.contains('light');
-        themeToggle.innerHTML = isLightNow ? '<i class="fa-regular fa-sun"></i>' Theme '<i class="fa-regular fa-moon"></i>';
+        themeToggle.innerHTML = isLightNow ? '<i class="fa-regular fa-sun"></i> Theme' : '<i class="fa-regular fa-moon"></i>';
+        
         themeToggle.addEventListener('click', () => {
           const isLight = document.documentElement.classList.toggle('light');
           try { localStorage.setItem('theme', isLight ? 'light' : 'dark'); } catch (_) {}
-          themeToggle.innerHTML = isLight ? '<i class="fa-regular fa-sun"></i>' Theme '<i class="fa-regular fa-moon"></i>';
+          themeToggle.innerHTML = isLight ? '<i class="fa-regular fa-sun"></i> Theme' : '<i class="fa-regular fa-moon"></i>';
         });
       }
 
@@ -518,6 +519,7 @@
   </script>
 </body>
 </html>
+
 
 
 
